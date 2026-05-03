@@ -53,6 +53,25 @@ export const authAPI = {
     return response;
   },
 
+  register: async (userData: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone: string;
+    password: string;
+    role: string;
+    department: string;
+    licenseNumber?: string;
+    hospitalName: string;
+  }) => {
+    const response = await apiRequest('/auth/register', {
+      method: 'POST',
+      body: JSON.stringify(userData),
+    });
+    
+    return response;
+  },
+
   logout: () => {
     localStorage.removeItem('auth_token');
     localStorage.removeItem('user_data');

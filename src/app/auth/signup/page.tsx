@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { Eye, EyeOff, Heart, Shield, CheckCircle, AlertCircle } from 'lucide-react'
 import { UserRole } from '../../../types'
+import { authAPI } from '../../../lib/api'
 
 export default function SignupPage() {
   const router = useRouter()
@@ -113,15 +114,29 @@ export default function SignupPage() {
     }
 
     try {
-      // Mock API call - replace with actual signup API
-      await new Promise(resolve => setTimeout(resolve, 2000))
+      // Prepare user data for backend
+      const userData = {
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        phone: formData.phone,
+        password: formData.password,
+        role: formData.role,
+        department: formData.department,
+        licenseNumber: formData.licenseNumber || undefined,
+        hospitalName: formData.hospitalName
+      }
+
+      // Call backend API
+      const response = await authAPI.register(userData)
       
       setSuccess('Account created successfully! Redirecting to login...')
       setTimeout(() => {
         router.push('/auth/login')
       }, 2000)
-    } catch (err) {
-      setError('Failed to create account. Please try again.')
+    } catch (err: any) {
+      console.error('Registration error:', err)
+      setError(err.message || 'Failed to create account. Please try again.')
     } finally {
       setLoading(false)
     }
