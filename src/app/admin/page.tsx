@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { Baby, BabyStatus } from '@/types'
+import { Baby, BabyStatus } from '../../types'
 
 // Mock data - replace with API calls
 const mockBabies: Baby[] = [

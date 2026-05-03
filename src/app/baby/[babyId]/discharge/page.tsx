@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter, useParams } from 'next/navigation'
-import { DischargeChecklist } from '@/types'
+import { DischargeChecklist } from '../../../../types'
 
 export default function DischargeChecklistPage() {
   const router = useRouter()
