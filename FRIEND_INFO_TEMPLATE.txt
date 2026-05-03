@@ -1,0 +1,17 @@
+=== COPY AND SEND TO YOUR FRIEND ===
+
+Backend IP Address: [Get from ipconfig/ifconfig command]
+Backend Port Number: [Get from their server setup]
+Test Login Email: [Get from them]
+Test Login Password: [Get from them] 
+Test Login Role: [NURSE/DOCTOR/ADMIN]
+
+=== EXAMPLE FILLED OUT ===
+
+Backend IP Address: 192.168.1.100
+Backend Port Number: 8000
+Test Login Email: nurse@test.com
+Test Login Password: password123
+Test Login Role: NURSE
+
+=== JUST COPY THE FILLED VERSION BACK TO ME ===
