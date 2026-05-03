@@ -1,10 +1,7 @@
 {
+  "name": "neotrack-frontend",
   "buildCommand": "npm run build",
   "outputDirectory": "out",
   "installCommand": "npm install",
-  "framework": "nextjs",
-  "env": {
-    "NEXT_PUBLIC_API_URL": "@backend-url",
-    "NEXT_PUBLIC_API_BASE_URL": "@backend-base-url"
-  }
+  "framework": "nextjs"
 }
