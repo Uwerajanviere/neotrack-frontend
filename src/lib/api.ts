@@ -1,6 +1,6 @@
 // API Service for NeoTrack Backend Integration
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8000/api';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://your-backend-url.onrender.com/api';
 
 // Generic API request function
 async function apiRequest(endpoint: string, options: RequestInit = {}) {
