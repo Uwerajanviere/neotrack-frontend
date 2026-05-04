@@ -94,6 +94,11 @@ export default function SignupPage() {
   }
 
   const validateStep3 = () => {
+    // Step 3 is just password setup, already validated in validateStep2
+    return true
+  }
+
+  const validateStep4 = () => {
     if (!formData.role || !formData.department || !formData.hospitalName) {
       setError('Please fill in all professional information')
       return false
@@ -115,6 +120,8 @@ export default function SignupPage() {
       setStep(2)
     } else if (step === 2 && validateStep2()) {
       setStep(3)
+    } else if (step === 3 && validateStep3()) {
+      setStep(4)
     }
   }
 
@@ -128,7 +135,7 @@ export default function SignupPage() {
     setError('')
     setLoading(true)
 
-    if (!validateStep3()) {
+    if (!validateStep4()) {
       setLoading(false)
       return
     }
