@@ -1,8 +1,9 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { Baby, BabyStatus, Alert } from '../../types'
+import { babiesAPI, alertsAPI } from '../../lib/api'
 
 // Mock data - replace with API calls
 const mockBabies: Baby[] = [
@@ -79,8 +80,32 @@ const temperatureData = [
 
 export default function DoctorDashboard() {
   const router = useRouter()
-  const [babies] = useState<Baby[]>(mockBabies)
-  const [alerts] = useState<Alert[]>(mockAlerts)
+  const [babies, setBabies] = useState<Baby[]>([])
+  const [alerts, setAlerts] = useState<Alert[]>([])
+  const [selectedBaby, setSelectedBaby] = useState<Baby | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState('')
+
+  useEffect(() => {
+    loadData()
+  }, [])
+
+  const loadData = async () => {
+    try {
+      setLoading(true)
+      const [babiesData, alertsData] = await Promise.all([
+        babiesAPI.getAll(),
+        alertsAPI.getAll()
+      ])
+      setBabies(babiesData)
+      setAlerts(alertsData)
+    } catch (err) {
+      setError('Failed to load data')
+      console.error('Error loading data:', err)
+    } finally {
+      setLoading(false)
+    }
+  }
 
   const getStatusColor = (status: BabyStatus) => {
     switch (status) {

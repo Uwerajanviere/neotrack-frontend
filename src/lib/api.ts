@@ -100,6 +100,43 @@ export const babiesAPI = {
   },
 };
 
+// Alerts API
+export const alertsAPI = {
+  getAll: async () => {
+    return await apiRequest('/alerts');
+  },
+
+  getById: async (id: number) => {
+    return await apiRequest(`/alerts/${id}`);
+  },
+
+  create: async (alertData: any) => {
+    return await apiRequest('/alerts', {
+      method: 'POST',
+      body: JSON.stringify(alertData),
+    });
+  },
+
+  update: async (id: number, alertData: any) => {
+    return await apiRequest(`/alerts/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(alertData),
+    });
+  },
+
+  delete: async (id: number) => {
+    return await apiRequest(`/alerts/${id}`, {
+      method: 'DELETE',
+    });
+  },
+
+  resolve: async (alertId: number) => {
+    return await apiRequest(`/alerts/${alertId}/resolve`, {
+      method: 'POST',
+    });
+  },
+};
+
 // Shift Logs API
 export const shiftLogsAPI = {
   getByBabyId: async (babyId: number) => {
