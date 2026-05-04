@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 import { UserRole } from '../types'
 import { authAPI } from '../lib/api'
 
@@ -108,7 +109,12 @@ export default function LoginPage() {
         </form>
 
         <div className="mt-6 text-center text-sm text-gray-600">
-          <p>Rwanda NICU Healthcare System</p>
+          <p>Don't have an account?{' '}
+            <Link href="/signup" className="text-blue-600 hover:underline font-medium">
+              Sign up
+            </Link>
+          </p>
+          <p className="mt-2">Rwanda NICU Healthcare System</p>
         </div>
       </div>
     </div>
