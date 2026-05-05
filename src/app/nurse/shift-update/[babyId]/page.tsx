@@ -109,7 +109,7 @@ export default function ShiftUpdate() {
                     required
                   />
                   {formData.weight && parseFloat(formData.weight) < 1.5 && (
-                    <p className="text-red-600 text-sm mt-1">⚠️ Low weight - requires monitoring</p>
+                    <p className="text-red-600 text-sm mt-1">Warning: Low weight - requires monitoring</p>
                   )}
                 </div>
 
@@ -128,10 +128,10 @@ export default function ShiftUpdate() {
                     required
                   />
                   {formData.temperature && parseFloat(formData.temperature) < 36.5 && (
-                    <p className="text-red-600 text-sm mt-1">🚨 Critical: Temperature too low!</p>
+                    <p className="text-red-600 text-sm mt-1">Critical: Temperature too low!</p>
                   )}
                   {formData.temperature && parseFloat(formData.temperature) > 37.5 && (
-                    <p className="text-yellow-600 text-sm mt-1">⚠️ High temperature - monitor closely</p>
+                    <p className="text-yellow-600 text-sm mt-1">High temperature - monitor closely</p>
                   )}
                 </div>
 

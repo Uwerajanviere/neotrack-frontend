@@ -28,6 +28,46 @@ export default function NurseDashboard() {
     }
   }
 
+  // Demo data for presentation
+  const demoBabies = [
+    {
+      id: 1,
+      name: 'Baby Jean',
+      gender: 'Male',
+      birthWeight: 2.1,
+      gestationalAge: 34,
+      diagnosis: 'Premature birth',
+      status: 'STABLE' as BabyStatus,
+      admissionDate: '2024-01-15',
+      parentId: 1,
+    },
+    {
+      id: 2,
+      name: 'Baby Marie',
+      gender: 'Female',
+      birthWeight: 1.8,
+      gestationalAge: 32,
+      diagnosis: 'Respiratory distress',
+      status: 'CRITICAL' as BabyStatus,
+      admissionDate: '2024-01-16',
+      parentId: 2,
+    },
+    {
+      id: 3,
+      name: 'Baby Paul',
+      gender: 'Male',
+      birthWeight: 2.5,
+      gestationalAge: 36,
+      diagnosis: 'Jaundice',
+      status: 'IMPROVING' as BabyStatus,
+      admissionDate: '2024-01-14',
+      parentId: 3,
+    },
+  ]
+
+  // Use demo data if API fails or for presentation
+  const displayBabies = babies.length > 0 ? babies : demoBabies
+
   const getStatusColor = (status: BabyStatus) => {
     switch (status) {
       case 'STABLE':
@@ -81,12 +121,12 @@ export default function NurseDashboard() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-8">
           <h2 className="text-2xl font-bold text-gray-900">Admitted Babies</h2>
-          <p className="text-gray-600 mt-1">Total: {babies.length} babies</p>
+          <p className="text-gray-600 mt-1">Total: {displayBabies.length} babies</p>
         </div>
 
         {/* Baby Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {babies.map((baby) => (
+          {displayBabies.map((baby) => (
             <div key={baby.id} className="card hover:shadow-md transition-shadow">
               <div className="flex justify-between items-start mb-4">
                 <div>

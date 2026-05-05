@@ -151,7 +151,7 @@ export default function DoctorDashboard() {
         {/* Alerts Section */}
         {activeAlerts.length > 0 && (
           <div className="mb-8">
-            <h2 className="text-2xl font-bold text-red-600 mb-4">🚨 Active Alerts</h2>
+            <h2 className="text-2xl font-bold text-red-600 mb-4">Active Alerts</h2>
             <div className="space-y-3">
               {activeAlerts.map((alert) => (
                 <div key={alert.id} className="bg-red-50 border border-red-200 rounded-lg p-4">
