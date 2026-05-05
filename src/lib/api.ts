@@ -137,6 +137,24 @@ export const alertsAPI = {
   },
 };
 
+// Parent Reports API
+export const parentAPI = {
+  submitReport: async (reportData: any) => {
+    return await apiRequest('/parent-report', {
+      method: 'POST',
+      body: JSON.stringify(reportData),
+    });
+  },
+
+  getReports: async () => {
+    return await apiRequest('/parent-reports');
+  },
+
+  getReportsByBabyId: async (babyId: number) => {
+    return await apiRequest(`/parent-reports/baby/${babyId}`);
+  },
+};
+
 // Shift Logs API
 export const shiftLogsAPI = {
   getByBabyId: async (babyId: number) => {
