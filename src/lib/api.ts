@@ -53,7 +53,6 @@ export const authAPI = {
     return response;
   },
 
-  
   logout: () => {
     localStorage.removeItem('auth_token');
     localStorage.removeItem('user_data');
@@ -104,6 +103,10 @@ export const babiesAPI = {
 export const alertsAPI = {
   getAll: async () => {
     return await apiRequest('/alerts');
+  },
+
+  getActive: async () => {
+    return await apiRequest('/alerts/active');
   },
 
   getById: async (id: number) => {
@@ -168,116 +171,16 @@ export const shiftLogsAPI = {
     });
   },
 
-  getAll: async () => {
-    return await apiRequest('/shift-logs');
-  },
-};
-
-// Parents API
-export const parentsAPI = {
-  create: async (parentData: any) => {
-    return await apiRequest('/parents', {
-      method: 'POST',
-      body: JSON.stringify(parentData),
-    });
-  },
-
-  getById: async (id: number) => {
-    return await apiRequest(`/parents/${id}`);
-  },
-};
-
-// Alerts API
-export const alertsAPI = {
-  getActive: async () => {
-    return await apiRequest('/alerts/active');
-  },
-
-  getByBabyId: async (babyId: number) => {
-    return await apiRequest(`/alerts/baby/${babyId}`);
-  },
-
-  resolve: async (alertId: number) => {
-    return await apiRequest(`/alerts/${alertId}/resolve`, {
-      method: 'POST',
-    });
-  },
-
-  create: async (alertData: any) => {
-    return await apiRequest('/alerts', {
-      method: 'POST',
-      body: JSON.stringify(alertData),
-    });
-  },
-};
-
-// Discharge Checklist API
-export const dischargeAPI = {
-  getByBabyId: async (babyId: number) => {
-    return await apiRequest(`/discharge-checklist/baby/${babyId}`);
-  },
-
-  update: async (babyId: number, checklistData: any) => {
-    return await apiRequest(`/discharge-checklist/baby/${babyId}`, {
+  update: async (id: number, shiftLogData: any) => {
+    return await apiRequest(`/shift-logs/${id}`, {
       method: 'PUT',
-      body: JSON.stringify(checklistData),
+      body: JSON.stringify(shiftLogData),
     });
   },
 
-  markReady: async (babyId: number) => {
-    return await apiRequest(`/discharge-checklist/baby/${babyId}/ready`, {
-      method: 'POST',
+  delete: async (id: number) => {
+    return await apiRequest(`/shift-logs/${id}`, {
+      method: 'DELETE',
     });
   },
-};
-
-// Admin/Statistics API
-export const adminAPI = {
-  getStats: async () => {
-    return await apiRequest('/admin/stats');
-  },
-
-  getDailyAdmissions: async () => {
-    return await apiRequest('/admin/daily-admissions');
-  },
-
-  getOutcomes: async () => {
-    return await apiRequest('/admin/outcomes');
-  },
-
-  getUsers: async () => {
-    return await apiRequest('/admin/users');
-  },
-
-  createUser: async (userData: any) => {
-    return await apiRequest('/admin/users', {
-      method: 'POST',
-      body: JSON.stringify(userData),
-    });
-  },
-};
-
-// SMS API
-export const smsAPI = {
-  sendToParent: async (babyId: number, message: string) => {
-    return await apiRequest('/sms/send', {
-      method: 'POST',
-      body: JSON.stringify({ babyId, message }),
-    });
-  },
-
-  getHistory: async (babyId: number) => {
-    return await apiRequest(`/sms/history/baby/${babyId}`);
-  },
-};
-
-export default {
-  authAPI,
-  babiesAPI,
-  shiftLogsAPI,
-  parentsAPI,
-  alertsAPI,
-  dischargeAPI,
-  adminAPI,
-  smsAPI,
 };
